@@ -1,4 +1,5 @@
-import bunyan, { LogLevel, Stream } from 'bunyan';
+const bunyan = require('bunyan');
+import { LogLevel, Stream } from 'bunyan';
 import { LoggerConfig, LoggerLevels } from './config';
 
 /**

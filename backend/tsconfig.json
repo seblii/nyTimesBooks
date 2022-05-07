@@ -1,12 +1,15 @@
 {
     "extends": "@tsconfig/node17/tsconfig.json",
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist",
     },
     "include": [
         "src"
     ],
     "exclude": [
-        "node_modules"
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts",
+        "node_modules",
+        "src/api/services/nytimesApi/**"
     ]
 }

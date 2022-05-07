@@ -34,13 +34,13 @@ let defaultBasePath = 'https://api.nytimes.com/svc/books/v3';
 // ===============================================
 
 export enum DefaultApiApiKeys {
-    api-key,
+    'vozTEH0DHXmmzAxSr7Xp79DDkjqwcIK0',
 }
 
 export class DefaultApi {
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {};
-    protected _useQuerystring : boolean = false;
+    protected _defaultHeaders: any = {};
+    protected _useQuerystring: boolean = false;
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
@@ -106,7 +106,7 @@ export class DefaultApi {
      * @param publisher The standardized name of the publisher
      * @param title The title of the best seller  When searching, you can specify a portion of a title or a full title.
      */
-    public async gETListsBestSellersHistoryJson (ageGroup?: string, author?: string, contributor?: string, isbn?: string, offset?: number, price?: string, publisher?: string, title?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineResponse2003;  }> {
+    public async gETListsBestSellersHistoryJson(ageGroup?: string, author?: string, contributor?: string, isbn?: string, offset?: number, price?: string, publisher?: string, title?: string, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: InlineResponse2003; }> {
         const localVarPath = this.basePath + '/lists/best-sellers/history.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -165,8 +165,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -183,7 +183,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2003;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2003; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -206,7 +206,7 @@ export class DefaultApi {
      * @param list Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.
      * @param offset Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.
      */
-    public async gETListsDateListJson (date: string, list: string, offset?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineResponse2001;  }> {
+    public async gETListsDateListJson(date: string, list: string, offset?: number, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: InlineResponse2001; }> {
         const localVarPath = this.basePath + '/lists/{date}/{list}.json'
             .replace('{' + 'date' + '}', encodeURIComponent(String(date)))
             .replace('{' + 'list' + '}', encodeURIComponent(String(list)));
@@ -249,8 +249,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -267,7 +267,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2001;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2001; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -291,7 +291,7 @@ export class DefaultApi {
      * @param publishedDate YYYY-MM-DD  The date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use \&quot;current\&quot; for latest list.
      * @param offset Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.
      */
-    public async gETListsFormat (list: string, bestsellersDate?: string, publishedDate?: string, offset?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineResponse200;  }> {
+    public async gETListsFormat(list: string, bestsellersDate?: string, publishedDate?: string, offset?: number, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: InlineResponse200; }> {
         const localVarPath = this.basePath + '/lists.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -339,8 +339,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -357,7 +357,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineResponse200;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: InlineResponse200; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -378,7 +378,7 @@ export class DefaultApi {
      * @summary Best Sellers List Full Overview
      * @param publishedDate YYYY-MM-DD  The best-seller list publication date. You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.  If you do not include a published date, the current week\&#39;s best sellers lists will be returned.
      */
-    public async gETListsFullOverviewFormat (publishedDate?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OverviewResponse;  }> {
+    public async gETListsFullOverviewFormat(publishedDate?: string, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: OverviewResponse; }> {
         const localVarPath = this.basePath + '/lists/full-overview.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -409,8 +409,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -427,7 +427,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OverviewResponse;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: OverviewResponse; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -447,7 +447,7 @@ export class DefaultApi {
      * Get Best Sellers list names.
      * @summary Best Sellers List Names
      */
-    public async gETListsNamesFormat (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineResponse2002;  }> {
+    public async gETListsNamesFormat(options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: InlineResponse2002; }> {
         const localVarPath = this.basePath + '/lists/names.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -474,8 +474,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -492,7 +492,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2002;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2002; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -513,7 +513,7 @@ export class DefaultApi {
      * @summary Best Sellers List Overview
      * @param publishedDate YYYY-MM-DD  The best-seller list publication date. You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.  If you do not include a published date, the current week\&#39;s best sellers lists will be returned.
      */
-    public async gETListsOverviewFormat (publishedDate?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OverviewResponse;  }> {
+    public async gETListsOverviewFormat(publishedDate?: string, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: OverviewResponse; }> {
         const localVarPath = this.basePath + '/lists/overview.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -544,8 +544,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -562,7 +562,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OverviewResponse;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: OverviewResponse; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
@@ -585,7 +585,7 @@ export class DefaultApi {
      * @param title You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.
      * @param author You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.
      */
-    public async gETReviewsFormat (isbn?: number, title?: string, author?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineResponse2004;  }> {
+    public async gETReviewsFormat(isbn?: number, title?: string, author?: string, options: { headers: { [name: string]: string } } = { headers: {} }): Promise<{ response: http.IncomingMessage; body: InlineResponse2004; }> {
         const localVarPath = this.basePath + '/reviews.json';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -624,8 +624,8 @@ export class DefaultApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.api-key.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.api-key.applyToRequest(localVarRequestOptions));
+        if (this.authentications.api - key.apiKey) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.api - key.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -642,7 +642,7 @@ export class DefaultApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2004;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: InlineResponse2004; }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);

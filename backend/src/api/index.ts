@@ -1,6 +1,7 @@
-import express, { NextFunction, Request, Response } from 'express';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
+import { NextFunction, Request, Response } from 'express';
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 import config from '../lib/config';
 import logger from '../lib/logger';
 

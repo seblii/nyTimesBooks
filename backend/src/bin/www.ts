@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 import app from '../api';
-import http from 'http';
+const http = require('http');
 import config from '../lib/config';
 import logger from '../lib/logger';
 

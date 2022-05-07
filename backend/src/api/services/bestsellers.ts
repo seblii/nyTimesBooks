@@ -1,8 +1,5 @@
-const ServerError = require('../../lib/error');
+import { GetBestSellersByListName } from "../models/getBestSellersByListNameRequest";
 
-export interface IGetBestSellersByListName {
-  list_name_encoded: string;
-}
 
 /**
  * @param {Object} options
@@ -10,7 +7,7 @@ export interface IGetBestSellersByListName {
  * @throws {Error}
  * @return {Promise}
  */
-const getBestsellersByListName = async (options: IGetBestSellersByListName) => {
+const getBestsellersByListName = async (options: GetBestSellersByListName) => {
   // Implement your business logic here...
   //
   // This function should return as follows:

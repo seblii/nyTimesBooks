@@ -1,55 +1,55 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  title: "NY Times Bestsellers Browser API"
-  version: "1.0"
+  title: 'NY Times Bestsellers Browser API'
+  version: 1.0
 servers:
   - url: http://localhost:3333/
 paths:
   /listNames:
       get:
-        summary: "Returns a list of book categories."
+        summary: 'Returns a list of book categories.'
         responses:
           '200':
-            description: "A JSON array of book list names"
+            description: 'A JSON array of book list names'
             content:
               application/json:
                 schema: 
-                  type: "array"
+                  type: array
                   items: 
-                    type: "object"
+                    type: object
                     properties:
                       display_name: 
-                        type: "string"
+                        type: string
                       list_name_encoded: 
-                        type: "string"
-  /bestsellers/{list_name}:
+                        type: string
+  /bestsellers/{list_name_encoded}:
       get:
-        summary: "Returns topsellers book by list name."
+        summary: 'Returns topsellers book by list name.'
         parameters:
           - in: path
-            name: "list_name_encoded"
+            name: 'list_name_encoded'
             schema:
-              type: "string"
-            required: "true"
-            decription: "list_name_encoded from categories query"
+              type: string
+            required: true
+            description: 'list_name_encoded from categories query'
         responses:
           '200':
-            description: "A JSON array of books"
+            description: 'A JSON array of books'
             content:
               application/json:
                 schema: 
-                  type: "array"
+                  type: array
                   items: 
-                    type: "object"
+                    type: object
                     properties:
                       title: 
-                        type: "string"
+                        type: string
                       author: 
-                        type: "string"
+                        type: string
                       isbn: 
-                        type: "string"
+                        type: string
                       reviews:
-                        type: "array"
+                        type: array
                         items: 
                           type: object
                           properties: 
