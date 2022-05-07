@@ -1,3 +1,4 @@
+// @ts-nocheck
 export * from './defaultApi';
 import { DefaultApi } from './defaultApi';
 import * as http from 'http';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import localVarRequest from 'request';
 
 export * from './inlineResponse200';
@@ -55,21 +56,21 @@ import { OverviewResponseResultsLists } from './overviewResponseResultsLists';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
-                    "string",
-                    "boolean",
-                    "double",
-                    "integer",
-                    "long",
-                    "float",
-                    "number",
-                    "any"
-                 ];
+    "string",
+    "boolean",
+    "double",
+    "integer",
+    "long",
+    "float",
+    "number",
+    "any"
+];
 
-let enumsMap: {[index: string]: any} = {
-        "InlineResponse2002Results.UpdatedEnum": InlineResponse2002Results.UpdatedEnum,
+let enumsMap: { [index: string]: any } = {
+    "InlineResponse2002Results.UpdatedEnum": InlineResponse2002Results.UpdatedEnum,
 }
 
-let typeMap: {[index: string]: any} = {
+let typeMap: { [index: string]: any } = {
     "InlineResponse200": InlineResponse200,
     "InlineResponse2001": InlineResponse2001,
     "InlineResponse2001Results": InlineResponse2001Results,
@@ -115,7 +116,7 @@ export class ObjectSerializer {
             } else {
                 if (data[discriminatorProperty]) {
                     var discriminatorType = data[discriminatorProperty];
-                    if(typeMap[discriminatorType]){
+                    if (typeMap[discriminatorType]) {
                         return discriminatorType; // use the type given in the discriminator
                     } else {
                         return expectedType; // discriminator did not map to a type
@@ -156,7 +157,7 @@ export class ObjectSerializer {
 
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
-            let instance: {[index: string]: any} = {};
+            let instance: { [index: string]: any } = {};
             for (let index = 0; index < attributeTypes.length; index++) {
                 let attributeType = attributeTypes[index];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type);
@@ -226,8 +227,8 @@ export class HttpBearerAuth implements Authentication {
     applyToRequest(requestOptions: localVarRequest.Options): void {
         if (requestOptions && requestOptions.headers) {
             const accessToken = typeof this.accessToken === 'function'
-                            ? this.accessToken()
-                            : this.accessToken;
+                ? this.accessToken()
+                : this.accessToken;
             requestOptions.headers["Authorization"] = "Bearer " + accessToken;
         }
     }

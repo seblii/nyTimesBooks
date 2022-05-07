@@ -1,5 +1,6 @@
 import axios from 'axios';
 const objectMapper = require('object-mapper');
+import * as nytimesApi from './nytimesApi/api';
 import { BookList, ListNamesResponse } from '../models/listNamesResponse';
 import nytBooksClient from "./nytBooksClient";
 import ServerError from '../../lib/error';
@@ -17,8 +18,10 @@ const BookListToListNameMap = {
  */
 const getListNames = async () => {
   /* FIXME: Use the generated nytimesApi
-  /    nytimesApi.DefaultApi.gETListsNamesFormat()  ??
+  /     const api = new nytimesApi.DefaultApi().gETListsNamesFormat();
   */
+  const api = new nytimesApi.DefaultApi();
+  console.log(api.gETListsNamesFormat());
   try {
     const { data } = await nytBooksClient.get<ListNamesResponse>(
       `lists/names.json`
