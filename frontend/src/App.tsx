@@ -1,49 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-
-interface ICategory {
-  display_name: string;
-  list_name_encoded: string;
-}
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ListNames from './routes/ListNames';
+import TopBooks from './routes/TopBooks';
 
 function App() {
-  const [lists, setListsNames] = useState<ICategory[]>([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:3333/listnames').then((response) => {
-      setListsNames(response.data);
-    });
-  }, []);
-  
   return (
-    <div>
-      <TableContainer>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-                New York Times Bestsellers by categories - Choose category
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {lists.map( list => (
-        <TableRow>
-          <TableCell>
-            {list.display_name}
-          </TableCell>
-        </TableRow>
-        ))}
-        </TableBody>
-      </Table>
-      </TableContainer>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ListNames />} />
+        <Route path="/bestsellers" element={<TopBooks />}>
+          <Route path=":listName" element={<TopBooks />} />
+        </Route>
+      </Routes>
+  </BrowserRouter>
   );
 }
 
