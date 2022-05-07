@@ -11,7 +11,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(function (req: Request, res: Response, next: NextFunction) {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
 /*
  * Routes
  */
