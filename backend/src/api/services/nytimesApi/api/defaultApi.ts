@@ -34,7 +34,7 @@ let defaultBasePath = 'https://api.nytimes.com/svc/books/v3';
 // ===============================================
 
 export enum DefaultApiApiKeys {
-    'vozTEH0DHXmmzAxSr7Xp79DDkjqwcIK0',
+    'api-key',
 }
 
 export class DefaultApi {

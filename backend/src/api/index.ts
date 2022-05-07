@@ -18,6 +18,9 @@ app.use(cookieParser());
 app.use('/listNames', require('./routes/listNames'));
 app.use('/bestsellers', require('./routes/bestsellers'));
 
+// TODO: Add swagger api-documentation
+
+
 // catch 404
 app.use((req: Request, res: Response, next: NextFunction) => {
   log.error(`Error 404s on ${req.url}.`);

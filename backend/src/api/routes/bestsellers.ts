@@ -1,4 +1,5 @@
-import express, { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+const express = require('express');
 import bestsellers from '../services/bestsellers';
 
 const router = express.Router();
@@ -6,7 +7,7 @@ const router = express.Router();
 /**
  * Returns topsellers book by list name.
  */
-router.get('/:list_name', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:list_name_encoded', async (req: Request, res: Response, next: NextFunction) => {
   const options = {
     list_name_encoded: req.params['list_name_encoded']
   };

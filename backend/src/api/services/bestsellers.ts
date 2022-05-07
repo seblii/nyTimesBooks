@@ -1,5 +1,8 @@
+import axios from 'axios';
+import ServerError from "../../lib/error";
 import { GetBestSellersByListName } from "../models/getBestSellersByListNameRequest";
-
+import nytBooksClient from "./nytBooksClient";
+import appConfig from '../../lib/config';
 
 /**
  * @param {Object} options
@@ -8,27 +11,27 @@ import { GetBestSellersByListName } from "../models/getBestSellersByListNameRequ
  * @return {Promise}
  */
 const getBestsellersByListName = async (options: GetBestSellersByListName) => {
-  // Implement your business logic here...
-  //
-  // This function should return as follows:
-  //
-  // return {
-  //   status: 200, // Or another success code.
-  //   data: [] // Optional. You can put whatever you want here.
-  // };
-  //
-  // If an error happens during your business logic implementation,
-  // you should throw an error as follows:
-  //
-  // throw new ServerError({
-  //   status: 500, // Or another error code.
-  //   error: 'Server Error' // Or another error message.
-  // });
+  /* FIXME: Use the generated nytimesApi
+  /    nytimesApi.DefaultApi.gETListsNamesFormat()  ??
+  */
+  console.log(options);
+  try {
+    const { data } = await nytBooksClient.get(
+      `lists/current/${options.list_name_encoded}.json`
+    );
 
-  return {
-    status: 200,
-    data: 'getBestsellersByListName ok!'
-  };
+    return {
+      status: 200,
+      data: data
+    }
+
+  } catch (error) {
+    throw new ServerError({
+      status: 500,
+      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error} apikey: ${appConfig.nytimes.apikey}`
+    });
+  }
+
 };
 
 export default {
