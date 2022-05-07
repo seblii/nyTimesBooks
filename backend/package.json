@@ -4,7 +4,7 @@
   "version": "1.0",
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
-    "dev": "cross-env NODE_ENV=development concurrently \"tsc --project tsconfig.build.json --watch\" \"nodemon -q dist/bin/www | bunyan\"",
+    "dev": "cross-env NODE_ENV=development concurrently \"tsc --project tsconfig.build.json --watch\" \"ts-node src/bin/www | bunyan\"",
     "start": "npm run build && node dist/bin/www"
   },
   "dependencies": {
