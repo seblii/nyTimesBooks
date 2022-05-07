@@ -1,0 +1,59 @@
+openapi: "3.0.0"
+info:
+  title: "NY Times Bestsellers Browser API"
+  version: "1.0"
+servers:
+  - url: http://localhost:3333/
+paths:
+  /listNames:
+      get:
+        summary: "Returns a list of book categories."
+        responses:
+          '200':
+            description: "A JSON array of book list names"
+            content:
+              application/json:
+                schema: 
+                  type: "array"
+                  items: 
+                    type: "object"
+                    properties:
+                      display_name: 
+                        type: "string"
+                      list_name_encoded: 
+                        type: "string"
+  /bestsellers/{list_name}:
+      get:
+        summary: "Returns topsellers book by list name."
+        parameters:
+          - in: path
+            name: "list_name_encoded"
+            schema:
+              type: "string"
+            required: "true"
+            decription: "list_name_encoded from categories query"
+        responses:
+          '200':
+            description: "A JSON array of books"
+            content:
+              application/json:
+                schema: 
+                  type: "array"
+                  items: 
+                    type: "object"
+                    properties:
+                      title: 
+                        type: "string"
+                      author: 
+                        type: "string"
+                      isbn: 
+                        type: "string"
+                      reviews:
+                        type: "array"
+                        items: 
+                          type: object
+                          properties: 
+                            reviewer: 
+                              type: string
+                            url:
+                              type: string                        
