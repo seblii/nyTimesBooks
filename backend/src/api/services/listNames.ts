@@ -18,12 +18,12 @@ const BookListToListNameMap = {
  */
 const getListNames = async () => {
   /* FIXME: Use the generated nytimesApi
-  /     const api = new nytimesApi.DefaultApi().gETListsNamesFormat();
+  /      const api = new nytimesApi.DefaultApi();
+  /       console.log(api.gETListsNamesFormat());
   */
-  const api = new nytimesApi.DefaultApi();
-  console.log(api.gETListsNamesFormat());
+
   try {
-    const { data } = await nytBooksClient.get<ListNamesResponse>(
+    const { data } = await nytBooksClient.get(
       `lists/names.json`
     );
 
