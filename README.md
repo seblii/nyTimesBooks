@@ -3,7 +3,7 @@ Just for fun and learning.
 
 # Set NYTimes API key
 Set your NYTimes API key backend/config/common.yml.
-(Will be moved environment variables in future commits)
+(Will be moved to environment variables in future commits)
 
 # Start backend and frontend
 cd backend
