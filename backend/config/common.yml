@@ -13,7 +13,7 @@ defaults: &defaults
       error: STDERR
       fatal:
   nytimes:
-    apikey: vozTEH0DHXmmzAxSr7Xp79DDkjqwcIK0
+    apikey: [your-api-key-here]
 development:
   <<: *defaults
 
