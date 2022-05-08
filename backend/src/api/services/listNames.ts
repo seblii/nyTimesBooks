@@ -1,7 +1,6 @@
 import axios from 'axios';
 const objectMapper = require('object-mapper');
-import * as nytimesApi from './nytimesApi/api';
-import { BookList, ListNamesResponse } from '../models/listNamesResponse';
+import { BookList } from '../models/listNamesResponse';
 import nytBooksClient from "./nytBooksClient";
 import ServerError from '../../lib/error';
 import appConfig from '../../lib/config';
@@ -35,7 +34,7 @@ const getListNames = async () => {
   } catch (error) {
     throw new ServerError({
       status: 500,
-      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error} apikey: ${appConfig.nytimes.apikey}`
+      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error}`
     });
   }
 };

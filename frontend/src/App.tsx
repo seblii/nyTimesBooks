@@ -1,19 +1,19 @@
+import { Typography } from '@mui/material';
+import styled from '@mui/material/styles/styled';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ListNames from './routes/ListNames';
-import TopBooks from './routes/TopBooks';
+import Router from './Router';
+
+const Margin = styled('div')({
+  margin: '60px',
+});
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ListNames />} />
-        <Route path="/bestsellers" element={<TopBooks />}>
-          <Route path=":listName" element={<TopBooks />} />
-        </Route>
-      </Routes>
-  </BrowserRouter>
+    <Margin>
+      <Typography variant="h4">New York Times Bestsellers</Typography>
+       <Router />
+    </Margin>
   );
 }
 

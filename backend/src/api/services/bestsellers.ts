@@ -1,8 +1,15 @@
 import axios from 'axios';
+const objectMapper = require('object-mapper');
 import ServerError from "../../lib/error";
 import { GetBestSellersByListName } from "../models/getBestSellersByListNameRequest";
 import nytBooksClient from "./nytBooksClient";
-import appConfig from '../../lib/config';
+
+
+const BookInToBookOutMap = {
+  "title": "title",
+  "author": "author",
+  "primary_isbn10": "isbn",
+}
 
 /**
  * @param {Object} options
@@ -14,7 +21,6 @@ const getBestsellersByListName = async (options: GetBestSellersByListName) => {
   /* FIXME: Use the generated nytimesApi
   /    nytimesApi.DefaultApi.gETListsNamesFormat()  ??
   */
-  console.log(options);
   try {
     const { data } = await nytBooksClient.get(
       `lists/current/${options.list_name_encoded}.json`
@@ -22,13 +28,14 @@ const getBestsellersByListName = async (options: GetBestSellersByListName) => {
 
     return {
       status: 200,
-      data: data
+      //FIXME: "any" -type
+      data: data.results.books.map((book: any) => objectMapper.merge(book, BookInToBookOutMap)),
     }
 
   } catch (error) {
     throw new ServerError({
       status: 500,
-      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error} apikey: ${appConfig.nytimes.apikey}`
+      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error}`
     });
   }
 
