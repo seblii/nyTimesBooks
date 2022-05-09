@@ -2,14 +2,16 @@
 Just for fun and learning.
 
 # Set NYTimes API key
-Set your NYTimes API key backend/config/common.yml.
-(Will be moved to environment variables in future commits)
+Set your NYTimes API key NYT_API_KEY evironment variable.
+Creating .env file at root of backend is supported.
 
 # Start backend and frontend
 cd backend  
+    npm install  
     npm run start  
 
 cd frontend  
+    yarn  
     yarn start  
 
 # TODO

@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+import 'dotenv/config';
 import app from '../api';
 const http = require('http');
 import config from '../lib/config';

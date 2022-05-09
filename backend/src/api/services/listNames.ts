@@ -1,13 +1,12 @@
 import axios from 'axios';
 const objectMapper = require('object-mapper');
-import { BookList } from '../models/listNamesResponse';
 import nytBooksClient from "./nytBooksClient";
 import ServerError from '../../lib/error';
-import appConfig from '../../lib/config';
+import { InlineResponse2002Results as BookList } from './nytimesApi/api';
 
 const BookListToListNameMap = {
-  "display_name": "display_name",
-  "list_name_encoded": "list_name_encoded"
+  "displayName": "display_name",
+  "listNameEncoded": "list_name_encoded"
 }
 
 /**
@@ -15,20 +14,14 @@ const BookListToListNameMap = {
  * @throws {Error}
  * @return {Promise}
  */
-const getListNames = async () => {
-  /* FIXME: Use the generated nytimesApi
-  /      const api = new nytimesApi.DefaultApi();
-  /       console.log(api.gETListsNamesFormat());
-  */
-
+const getListNames = async (): Promise<any> => {
   try {
-    const { data } = await nytBooksClient.get(
-      `lists/names.json`
-    );
+    const data = await nytBooksClient.gETListsNamesFormat()
+    const results = data.body.results || [];
 
     return {
       status: 200,
-      data: data.results.map((bookList: BookList) => objectMapper.merge(bookList, BookListToListNameMap)),
+      data: results.map((bookList: BookList) => objectMapper.merge(bookList, BookListToListNameMap)),
     }
 
   } catch (error) {

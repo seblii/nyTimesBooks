@@ -1,14 +1,11 @@
-import axios from 'axios';
 export const NYT_API_BASEURL = 'https://api.nytimes.com/svc/books/v3/';
-import appConfig from '../../lib/config';
-const nytBooksClient = axios.create({
-    baseURL: NYT_API_BASEURL,
-});
+import * as nytimesApi from './nytimesApi/api'
 
-nytBooksClient.interceptors.request.use((config) => {
-    config.params = config.params || {};
-    config.params['api-key'] = appConfig.nytimes.apikey;
-    return config;
-});
+const nytBooksClient = new nytimesApi.DefaultApi();
+if (process.env.NYT_API_KEY) {
+    nytBooksClient.setApiKey(nytimesApi.DefaultApiApiKeys['api-key'], process.env.NYT_API_KEY);
+} else {
+    throw new Error('API-key missing. Set one on NYT_API_KEY environment variable.');
+}
 
 export default nytBooksClient;
