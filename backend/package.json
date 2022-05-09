@@ -6,7 +6,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "dev": "cross-env NODE_ENV=development concurrently \"tsc --project tsconfig.build.json --watch\" \"ts-node src/bin/www | bunyan\"",
     "start": "npm run build && node dist/bin/www",
-    "generate-typescript-client": "openapi-generator-cli generate -g typescript-axios -i ../api-doc.yml -o ../frontend/src/api",
+    "generate-typescript-client": "openapi-generator-cli generate -g typescript-axios -i api-doc.yml -o ../frontend/src/api",
     "generate-nyt-client": "openapi-generator-cli generate -g typescript-node -i nyt-api-doc.yml -o ./src/api/services/nytimesApi --additional-properties=supportsES6=true"
   },
   "dependencies": {

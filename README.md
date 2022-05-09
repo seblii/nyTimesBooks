@@ -18,7 +18,6 @@ cd frontend
 
 Lots of stuff to fix...  
   
-- Get the generated NYT client to use at backend  
 - Write all tests  
 - Setup prettier  
 - Fix all FIXMEs & bugs  

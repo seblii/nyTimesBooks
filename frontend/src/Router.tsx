@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ListNames from './routes/ListNames';
-import TopBooks from './routes/TopBooks';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ListNames from "./routes/ListNames";
+import TopBooks from "./routes/TopBooks";
 
 function Router() {
   return (
@@ -12,7 +12,7 @@ function Router() {
           <Route path=":listName" element={<TopBooks />} />
         </Route>
       </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
