@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import * as backend from "../api";
 import { InlineResponse2001 as IBook } from "../api";
+import { useQuery } from "react-query";
 
 const TopBooks = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const params = useParams();
 
-  // FIXME: Renders two times. (and calls the api)
-  useEffect(() => {
+  useQuery("listnames", () => {
     if (!params.listName) {
       return;
     }
@@ -24,7 +24,7 @@ const TopBooks = () => {
         const books = response.data as IBook[];
         setBooks(books);
       });
-  }, [params.listName]);
+  });
 
   return (
     <div>
@@ -32,10 +32,13 @@ const TopBooks = () => {
         <Table>
           <TableBody>
             {books.map((book) => (
-              <TableRow>
+              <TableRow key={book.isbn}>
                 <TableCell>
                   <Typography variant={"body1"}>{book.title}</Typography>
                   <Typography variant={"body2"}>by {book.author}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/reviews/${book.isbn}`}>Show reviews</Link>
                 </TableCell>
                 <TableCell>{book.isbn}</TableCell>
               </TableRow>

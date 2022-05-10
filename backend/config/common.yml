@@ -12,8 +12,6 @@ defaults: &defaults
       warn:
       error: STDERR
       fatal:
-  nytimes:
-    apikey: [your-api-key-here]
 development:
   <<: *defaults
 

@@ -1,8 +1,8 @@
 import axios from 'axios';
 const objectMapper = require('object-mapper');
 import ServerError from "../../lib/error";
-import { GetBestSellersByListName } from "../models/getBestSellersByListNameRequest";
 import nytBooksClient from "./nytBooksClient";
+import { GetBestSellersByListName } from './../models/getBestSellersByListNameRequest';
 import { InlineResponse2001ResultsBooks as BookIn } from './nytimesApi/model/inlineResponse2001ResultsBooks';
 
 
@@ -22,6 +22,7 @@ const getBestsellersByListName = async (options: GetBestSellersByListName): Prom
   try {
 
     const data = await nytBooksClient.gETListsDateListJson('current', options.list_name_encoded);
+
     const results = data.body.results?.books || [];
 
     return {
@@ -32,7 +33,7 @@ const getBestsellersByListName = async (options: GetBestSellersByListName): Prom
   } catch (error) {
     throw new ServerError({
       status: 500,
-      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error}`
+      error: `Server Error: ${JSON.stringify(error)}`
     });
   }
 

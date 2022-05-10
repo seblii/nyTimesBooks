@@ -20,6 +20,7 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
  */
 app.use('/listNames', require('./routes/listNames'));
 app.use('/bestsellers', require('./routes/bestsellers'));
+app.use('/reviews', require('./routes/reviews'));
 
 // TODO: Add swagger api-documentation
 

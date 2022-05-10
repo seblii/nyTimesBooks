@@ -27,7 +27,7 @@ const getListNames = async (): Promise<any> => {
   } catch (error) {
     throw new ServerError({
       status: 500,
-      error: `Server Error: ${axios.isAxiosError(error) ? error.message : error}`
+      error: `Server Error: ${JSON.stringify(error)}`
     });
   }
 };

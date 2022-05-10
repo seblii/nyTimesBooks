@@ -44,25 +44,6 @@ import {
 /**
  *
  * @export
- * @interface BestsellersListNameEncodedReviews
- */
-export interface BestsellersListNameEncodedReviews {
-  /**
-   *
-   * @type {string}
-   * @memberof BestsellersListNameEncodedReviews
-   */
-  reviewer?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof BestsellersListNameEncodedReviews
-   */
-  url?: string;
-}
-/**
- *
- * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
@@ -103,12 +84,25 @@ export interface InlineResponse2001 {
    * @memberof InlineResponse2001
    */
   isbn?: string;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
   /**
    *
-   * @type {Array<BestsellersListNameEncodedReviews>}
-   * @memberof InlineResponse2001
+   * @type {string}
+   * @memberof InlineResponse2002
    */
-  reviews?: Array<BestsellersListNameEncodedReviews>;
+  byline?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InlineResponse2002
+   */
+  url?: string;
 }
 
 /**
@@ -208,6 +202,52 @@ export const DefaultApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+    /**
+     *
+     * @summary Returns book reviews by isbn.
+     * @param {number} isbn
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    reviewsIsbnGet: async (
+      isbn: number,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'isbn' is not null or undefined
+      assertParamExists("reviewsIsbnGet", "isbn", isbn);
+      const localVarPath = `/reviews/{isbn}`.replace(
+        `{${"isbn"}}`,
+        encodeURIComponent(String(isbn))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -270,6 +310,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
         configuration
       );
     },
+    /**
+     *
+     * @summary Returns book reviews by isbn.
+     * @param {number} isbn
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async reviewsIsbnGet(
+      isbn: number,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<InlineResponse2002>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.reviewsIsbnGet(
+        isbn,
+        options
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
   };
 };
 
@@ -310,6 +377,21 @@ export const DefaultApiFactory = function (
         .listNamesGet(options)
         .then((request) => request(axios, basePath));
     },
+    /**
+     *
+     * @summary Returns book reviews by isbn.
+     * @param {number} isbn
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    reviewsIsbnGet(
+      isbn: number,
+      options?: any
+    ): AxiosPromise<Array<InlineResponse2002>> {
+      return localVarFp
+        .reviewsIsbnGet(isbn, options)
+        .then((request) => request(axios, basePath));
+    },
   };
 };
 
@@ -347,6 +429,20 @@ export class DefaultApi extends BaseAPI {
   public listNamesGet(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .listNamesGet(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @summary Returns book reviews by isbn.
+   * @param {number} isbn
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public reviewsIsbnGet(isbn: number, options?: AxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .reviewsIsbnGet(isbn, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
