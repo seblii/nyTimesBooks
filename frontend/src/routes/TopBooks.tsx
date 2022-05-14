@@ -6,19 +6,19 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import { Link, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
-import * as backend from "../api";
 import { InlineResponse2001 as IBook } from "../api";
 import { useQuery } from "react-query";
+import NYTimesClient from "./NYTimesClient";
 
 const TopBooks = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const params = useParams();
 
-  useQuery("listnames", () => {
+  useQuery(`topbooks/${params.listName}`, () => {
     if (!params.listName) {
       return;
     }
-    new backend.DefaultApi()
+    NYTimesClient
       .bestsellersListNameEncodedGet(params.listName)
       .then((response) => {
         const books = response.data as IBook[];

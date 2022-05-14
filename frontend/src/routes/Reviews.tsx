@@ -6,21 +6,21 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import { useParams } from "react-router-dom";
 import { Link, Typography } from "@mui/material";
-import * as backend from "../api";
 import { InlineResponse2002 as IReview } from "../api";
 import { useQuery } from "react-query";
+import NYTimesClient from "./NYTimesClient";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<IReview[]>([]);
   const params = useParams();
 
-  useQuery("listnames", () => {
+  useQuery(`reviews/${params.isbn}`, () => {
     const validIsbn = params.isbn && parseInt(params.isbn);
     if (!validIsbn) {
       throw new Error(`Parameter 'isbn' is missing or invalid`);
     }
 
-    new backend.DefaultApi().reviewsIsbnGet(validIsbn).then((response) => {
+    NYTimesClient.reviewsIsbnGet(validIsbn).then((response) => {
       const reviews = response.data as IReview[];
       setReviews(reviews);
     });
