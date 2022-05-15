@@ -7,9 +7,9 @@ import { InlineResponse2002 as IReview } from "../api";
 interface IReviews {
   reviews: IReview[];
 }
-const Padding = styled('div')({
-  paddingLeft: '50px'
-})
+const Padding = styled("div")({
+  paddingLeft: "50px",
+});
 const Reviews = (props: IReviews) => {
   const { reviews } = props;
   const params = useParams();
@@ -18,7 +18,9 @@ const Reviews = (props: IReviews) => {
     return (
       <TableRow>
         <TableCell colSpan={3}>
-          <Typography variant="subtitle2">No reviews for isbn {params.isbn}</Typography>
+          <Typography variant="subtitle2">
+            No reviews for isbn {params.isbn}
+          </Typography>
         </TableCell>
       </TableRow>
     );

@@ -13,22 +13,26 @@ import CircularProgress from "@mui/material/CircularProgress";
 const ListNames = () => {
   const [listNames, setListsNames] = useState<IListName[]>([]);
 
-  const listnamesQuery = useQuery("listnames", () => {
-    return NYTimesClient.listNamesGet().then((response) => {
-      const listNames = response.data as IListName[];
-      setListsNames(listNames);
-    });
-  }, {
-    refetchOnWindowFocus: false,
-    enabled: listNames.length === 0
-  });
+  const listnamesQuery = useQuery(
+    "listnames",
+    () => {
+      return NYTimesClient.listNamesGet().then((response) => {
+        const listNames = response.data as IListName[];
+        setListsNames(listNames);
+      });
+    },
+    {
+      refetchOnWindowFocus: false,
+      enabled: listNames.length === 0,
+    }
+  );
 
   if (listnamesQuery.isLoading) {
     return (
       <>
-      <CircularProgress />
+        <CircularProgress />
       </>
-    )
+    );
   }
 
   return (
