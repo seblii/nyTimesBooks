@@ -8,12 +8,13 @@ import TableContainer from "@mui/material/TableContainer";
 import { InlineResponse200 as IListName } from "../api";
 import { useQuery } from "react-query";
 import NYTimesClient from "./NYTimesClient";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ListNames = () => {
   const [listNames, setListsNames] = useState<IListName[]>([]);
 
-  useQuery("listnames", () => {
-    NYTimesClient.listNamesGet().then((response) => {
+  const listnamesQuery = useQuery("listnames", () => {
+    return NYTimesClient.listNamesGet().then((response) => {
       const listNames = response.data as IListName[];
       setListsNames(listNames);
     });
@@ -21,6 +22,14 @@ const ListNames = () => {
     refetchOnWindowFocus: false,
     enabled: listNames.length === 0
   });
+
+  if (listnamesQuery.isLoading) {
+    return (
+      <>
+      <CircularProgress />
+      </>
+    )
+  }
 
   return (
     <TableContainer>

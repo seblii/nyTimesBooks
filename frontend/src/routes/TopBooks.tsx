@@ -5,7 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import { useParams } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, styled, Typography } from "@mui/material";
 import { InlineResponse2001 as IBook } from "../api";
 import { InlineResponse2002 as IReview } from "../api";
 import { useQuery } from "react-query";
@@ -13,17 +13,22 @@ import NYTimesClient from "./NYTimesClient";
 import Reviews from "./Reviews";
 
 type ReviewsState = [IReview[]];
+
+const Bar = styled('div')({
+  alignContent: 'right',
+});
+
 const TopBooks = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const [reviews, setReviews] = useState<ReviewsState>([] as unknown as ReviewsState);
   const [isbn, setIsbn] = useState<number | undefined>(undefined);
   const params = useParams();
 
-  useQuery(`topbooks/${params.listName}`, () => {
+  const topbooksQuery = useQuery(`topbooks/${params.listName}`, () => {
     if (!params.listName) {
       return;
     }
-    NYTimesClient
+    return NYTimesClient
       .bestsellersListNameEncodedGet(params.listName)
       .then((response) => {
         const books = response.data as IBook[];
@@ -35,12 +40,12 @@ const TopBooks = () => {
     enabled: books.length === 0
   });
 
-  useQuery(`reviews/${isbn}`, () => {
+  const reviewsQuery = useQuery(`reviews/${isbn}`, () => {
     if (!isbn) {
       throw new Error(`Parameter 'isbn' is missing or invalid`);
     }
 
-    NYTimesClient.reviewsIsbnGet(isbn).then((response) => {
+    return NYTimesClient.reviewsIsbnGet(isbn).then((response) => {
       const bookReviews = response.data as IReview[];
       reviews[isbn] = bookReviews;
       setReviews(reviews);
@@ -49,10 +54,15 @@ const TopBooks = () => {
   }, {
     refetchOnWindowFocus: false,
     enabled: !!isbn && !reviews[isbn] // turned off by default, manual refetch is needed
-  });
+  });  
 
   return (
     <div>
+      {(topbooksQuery.isLoading || reviewsQuery.isLoading) && (
+      <Bar>
+        <CircularProgress />
+      </Bar>
+      )}
       <TableContainer>
         <Table>
           <TableBody>
