@@ -17,6 +17,9 @@ const ListNames = () => {
       const listNames = response.data as IListName[];
       setListsNames(listNames);
     });
+  }, {
+    refetchOnWindowFocus: false,
+    enabled: listNames.length === 0
   });
 
   return (

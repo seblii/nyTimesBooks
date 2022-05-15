@@ -1,54 +1,44 @@
-import { useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import { useParams } from "react-router-dom";
-import { Link, Typography } from "@mui/material";
+import { Link, styled, Typography } from "@mui/material";
 import { InlineResponse2002 as IReview } from "../api";
-import { useQuery } from "react-query";
-import NYTimesClient from "./NYTimesClient";
 
-const Reviews = () => {
-  const [reviews, setReviews] = useState<IReview[]>([]);
+interface IReviews {
+  reviews: IReview[];
+}
+const Padding = styled('div')({
+  paddingLeft: '50px'
+})
+const Reviews = (props: IReviews) => {
+  const { reviews } = props;
   const params = useParams();
 
-  useQuery(`reviews/${params.isbn}`, () => {
-    const validIsbn = params.isbn && parseInt(params.isbn);
-    if (!validIsbn) {
-      throw new Error(`Parameter 'isbn' is missing or invalid`);
-    }
-
-    NYTimesClient.reviewsIsbnGet(validIsbn).then((response) => {
-      const reviews = response.data as IReview[];
-      setReviews(reviews);
-    });
-  });
-
   if (!reviews.length) {
-    return <Typography>No reviews for isbn {params.isbn}</Typography>;
+    return (
+      <TableRow>
+        <TableCell colSpan={3}>
+          <Typography variant="subtitle2">No reviews for isbn {params.isbn}</Typography>
+        </TableCell>
+      </TableRow>
+    );
   }
 
   return (
-    <div>
-      <TableContainer>
-        <Table>
-          <TableBody>
-            {reviews.map((review) => (
-              <TableRow>
-                <TableCell>
-                  <Typography variant={"body1"}>{review.byline}</Typography>
-                  <Link href={review.url} variant={"body2"}>
-                    {review.url}
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <>
+      {reviews.map((review: IReview) => (
+        <TableRow>
+          <TableCell colSpan={3}>
+            <Padding>
+              <Typography variant={"subtitle2"}>{review.byline}</Typography>
+              <Link href={review.url} variant={"body2"}>
+                {review.url}
+              </Link>
+            </Padding>
+          </TableCell>
+        </TableRow>
+      ))}
+    </>
   );
 };
 

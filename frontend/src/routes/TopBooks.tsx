@@ -1,17 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import { Link, useParams } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 import { InlineResponse2001 as IBook } from "../api";
+import { InlineResponse2002 as IReview } from "../api";
 import { useQuery } from "react-query";
 import NYTimesClient from "./NYTimesClient";
+import Reviews from "./Reviews";
 
+type ReviewsState = [IReview[]];
 const TopBooks = () => {
   const [books, setBooks] = useState<IBook[]>([]);
+  const [reviews, setReviews] = useState<ReviewsState>([] as unknown as ReviewsState);
+  const [isbn, setIsbn] = useState<number | undefined>(undefined);
   const params = useParams();
 
   useQuery(`topbooks/${params.listName}`, () => {
@@ -24,6 +29,26 @@ const TopBooks = () => {
         const books = response.data as IBook[];
         setBooks(books);
       });
+  },
+  {
+    refetchOnWindowFocus: false,
+    enabled: books.length === 0
+  });
+
+  useQuery(`reviews/${isbn}`, () => {
+    if (!isbn) {
+      throw new Error(`Parameter 'isbn' is missing or invalid`);
+    }
+
+    NYTimesClient.reviewsIsbnGet(isbn).then((response) => {
+      const bookReviews = response.data as IReview[];
+      reviews[isbn] = bookReviews;
+      setReviews(reviews);
+      setIsbn(undefined);
+    });
+  }, {
+    refetchOnWindowFocus: false,
+    enabled: !!isbn && !reviews[isbn] // turned off by default, manual refetch is needed
   });
 
   return (
@@ -32,16 +57,19 @@ const TopBooks = () => {
         <Table>
           <TableBody>
             {books.map((book) => (
-              <TableRow key={book.isbn}>
+              <React.Fragment key={book.isbn}>
+              <TableRow>
                 <TableCell>
                   <Typography variant={"body1"}>{book.title}</Typography>
                   <Typography variant={"body2"}>by {book.author}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Link to={`/reviews/${book.isbn}`}>Show reviews</Link>
+                  <Button onClick={() => { if (book.isbn) { setIsbn(parseInt(book.isbn)) } } }>Show reviews</Button>
                 </TableCell>
                 <TableCell>{book.isbn}</TableCell>
               </TableRow>
+              {book.isbn && reviews[parseInt(book.isbn)] && <Reviews reviews={reviews[parseInt(book.isbn)]} />}
+              </React.Fragment>
             ))}
           </TableBody>
         </Table>
