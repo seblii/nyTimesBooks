@@ -1,0 +1,19 @@
+Copy code
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Environment files
+.env
+
+# IDE / Editor specific files
+.vscode/
+
+# Operating System generated files
+.DS_Store
