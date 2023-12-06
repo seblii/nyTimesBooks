@@ -204,10 +204,13 @@ export class DefaultService {
     /**
      * Best Sellers List Names
      * Get Best Sellers list names.
+     * @param apiKey
      * @returns any Get Best Sellers list names.
      * @throws ApiError
      */
-    public static getListsNamesFormat(): CancelablePromise<{
+    public static getListsNamesFormat(
+        apiKey: string,
+    ): CancelablePromise<{
         status?: string;
         copyright?: string;
         num_results?: number;
@@ -223,6 +226,9 @@ export class DefaultService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/lists/names.json',
+            query: {
+                'api-key': apiKey,
+            },
         });
     }
 
