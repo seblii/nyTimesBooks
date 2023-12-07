@@ -471,11 +471,6 @@ paths:
         - application/json
       produces:
         - application/json
-      parameters:
-        - name: api-key
-          in: query
-          required: true
-          type: string
       responses:
         "200":
           description: Get Best Sellers list names.

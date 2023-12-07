@@ -13,6 +13,7 @@ export class DefaultService {
     /**
      * Best Sellers List
      * Get Best Sellers list.  If no date is provided returns the latest list.
+     * @param apiKey Your personal API key
      * @param list The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).
      * The /lists/names service returns all the list names.
      * The encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).
@@ -27,6 +28,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getListsFormat(
+        apiKey: string,
         list: string = 'hardcover-fiction',
         bestsellersDate?: string,
         publishedDate?: string,
@@ -79,6 +81,7 @@ export class DefaultService {
                 'bestsellers-date': bestsellersDate,
                 'published-date': publishedDate,
                 'offset': offset,
+                'api-key': apiKey,
             },
         });
     }
@@ -90,6 +93,7 @@ export class DefaultService {
      *
      * The date the best sellers list was published on NYTimes.com.  Use "current" to get latest list.
      * @param list Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.
+     * @param apiKey Your personal API key
      * @param offset Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.
      * @returns any Best Sellers list books.
      * @throws ApiError
@@ -97,6 +101,7 @@ export class DefaultService {
     public static getListsDateListJson(
         date: string,
         list: string,
+        apiKey: string,
         offset?: number,
     ): CancelablePromise<{
         status?: string;
@@ -149,6 +154,7 @@ export class DefaultService {
             },
             query: {
                 'offset': offset,
+                'api-key': apiKey,
             },
         });
     }
@@ -156,6 +162,7 @@ export class DefaultService {
     /**
      * Best Sellers List Full Overview
      * Get all books for all the Best Sellers lists for specified date.
+     * @param apiKey Your personal API key
      * @param publishedDate YYYY-MM-DD
      *
      * The best-seller list publication date.
@@ -166,6 +173,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getListsFullOverviewFormat(
+        apiKey: string,
         publishedDate?: string,
     ): CancelablePromise<OverviewResponse> {
         return __request(OpenAPI, {
@@ -173,6 +181,7 @@ export class DefaultService {
             url: '/lists/full-overview.json',
             query: {
                 'published_date': publishedDate,
+                'api-key': apiKey,
             },
         });
     }
@@ -180,6 +189,7 @@ export class DefaultService {
     /**
      * Best Sellers List Overview
      * Get top 5 books for all the Best Sellers lists for specified date.
+     * @param apiKey Your personal API key
      * @param publishedDate YYYY-MM-DD
      *
      * The best-seller list publication date.
@@ -190,6 +200,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getListsOverviewFormat(
+        apiKey: string,
         publishedDate?: string,
     ): CancelablePromise<OverviewResponse> {
         return __request(OpenAPI, {
@@ -197,6 +208,7 @@ export class DefaultService {
             url: '/lists/overview.json',
             query: {
                 'published_date': publishedDate,
+                'api-key': apiKey,
             },
         });
     }
@@ -204,7 +216,7 @@ export class DefaultService {
     /**
      * Best Sellers List Names
      * Get Best Sellers list names.
-     * @param apiKey
+     * @param apiKey Your personal API key
      * @returns any Get Best Sellers list names.
      * @throws ApiError
      */
@@ -235,6 +247,7 @@ export class DefaultService {
     /**
      * Best Sellers List History
      * Get Best Sellers list history.
+     * @param apiKey Your personal API key
      * @param ageGroup The target age group for the best seller.
      * @param author The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).
      *
@@ -259,6 +272,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getListsBestSellersHistoryJson(
+        apiKey: string,
         ageGroup?: string,
         author?: string,
         contributor?: string,
@@ -317,6 +331,7 @@ export class DefaultService {
                 'price': price,
                 'publisher': publisher,
                 'title': title,
+                'api-key': apiKey,
             },
         });
     }
@@ -324,6 +339,7 @@ export class DefaultService {
     /**
      * Reviews
      * Get book reviews.
+     * @param apiKey Your personal API key
      * @param isbn Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.
      * @param title You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.
      * @param author You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.
@@ -331,6 +347,7 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getReviewsFormat(
+        apiKey: string,
         isbn?: number,
         title?: string,
         author?: string,
@@ -355,6 +372,7 @@ export class DefaultService {
                 'isbn': isbn,
                 'title': title,
                 'author': author,
+                'api-key': apiKey,
             },
         });
     }

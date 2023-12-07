@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const yaml = require('js-yaml');
+const YAML = require('yamljs')
 
 const apiKeyParameter = {
   name: 'api-key',
@@ -9,16 +9,12 @@ const apiKeyParameter = {
   type: 'string'
 }
 
-
-[
-  {"name":"api-key","in":"query","required":true,"type":"string"},
-  {"name":"api-key","in":"query","required":true,"description":"Your personal API key","type":"string"}]
-
 async function modifyYaml(filePath,destFilePath) {
   try {
     // Load the YAML file
     const fileContents = await fs.readFile(filePath, 'utf8');
-    const data = yaml.load(fileContents);
+    //const data = yaml.load(fileContents);
+    const data = YAML.parse(fileContents);
 
     // Iterate over paths and modify query parameters
     for (const path in data.paths) {
@@ -43,13 +39,13 @@ async function modifyYaml(filePath,destFilePath) {
 
         console.log(`  Adding api-key parameter`);
                 
-        if (!operation.parameters) operation.parameters = {};
+        if (!operation.parameters) operation.parameters = [];
         operation.parameters.push(apiKeyParameter);
       }
     }
 
     // Convert the object back to YAML
-    const newYaml = yaml.dump(data);
+    const newYaml = YAML.stringify(data);
 
     // Write the modified YAML back to file
     await fs.writeFile(destFilePath, newYaml, 'utf8');
@@ -59,5 +55,4 @@ async function modifyYaml(filePath,destFilePath) {
   }
 }
 
-// Replace 'path/to/your/file.yaml' with the path to your YAML file
-modifyYaml('./src/config/books-product.yaml', './src/config/books-product-with-api-key.yaml');
+modifyYaml('./config/books-product.yaml', './config/books-product-with-api-key.yaml');
