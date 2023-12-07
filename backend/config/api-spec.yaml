@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: "NY Times bestsellers"
+  version: 1.0.0
+  description: "Simplified API to explore NY Times bestsellers"
+servers:
+  - { url: "http://localhost:3000", description: "Development server" }
+paths:
+  /list-names:
+    {
+      get:
+        {
+          summary: "Request best seller books list names",
+          responses:
+            {
+              "200":
+                {
+                  description: "List of book category names",
+                  content:
+                    {
+                      application/json:
+                        {
+                          schema:
+                            {
+                              type: array,
+                              items:
+                                { $ref: "#/components/schemas/BookCategory" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    }
+components:
+  schemas:
+    {
+      BookCategory:
+        {
+          type: object,
+          properties:
+            {
+              list_name:
+                { type: string, description: "Internal name for the list" },
+              display_name:
+                { type: string, description: "Display name for the list" },
+              list_name_encoded:
+                { type: string, description: "URL-encoded name for the list" },
+            },
+        },
+    }
+tags: []

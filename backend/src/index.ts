@@ -1,15 +1,11 @@
 require('dotenv').config();
 import express from "express";
-import { getBooklists } from "./service/bestsellers";
-
+import initRoutes from "./routes";
 
 const app = express();
 
-if (!process.env.NYT_API_KEY) {
-    throw new Error("NYT_API_KEY environment variable not set!")
-}
 // Defining routes
-app.get('/list-names', getBooklists);
+initRoutes(app);
 
 // Start server
 app.listen(process.env.PORT, () => {
