@@ -1,4 +1,3 @@
-import { warn } from "console";
 import { getBooklists } from "../service/bestsellers";
 import { Express } from 'express';
 /**
