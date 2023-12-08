@@ -1,4 +1,4 @@
-import { DefaultService } from "../api";
+import { DefaultService } from "./nyTimesClient";
 
 type BookList = {
     list_name: string | undefined;
