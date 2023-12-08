@@ -1,5 +1,5 @@
-import { getBooklists } from "../service/bestsellers";
-import { Express } from 'express';
+import { Request, Response } from 'express';
+import BestellersService from '../service/BestsellersService';
 /**
 * @swagger
 * components:
@@ -31,10 +31,11 @@ import { Express } from 'express';
 *                          type: array
 *                          items:
 *                              $ref: '#/components/schemas/BookCategory'
-*/ 
-export default (app: Express) => {
-    if (!process.env.NYT_API_KEY) {
-        throw new Error("NYT_API_KEY environment variable not set!")
-    }
-    app.get('/list-names', getBooklists);
+*/
+export default async (req: Request, res: Response) => {
+    const lists = await new BestellersService(
+        process.env.NYT_API_KEY!!
+    ).getBooklists();
+
+    res.send(lists);
 }

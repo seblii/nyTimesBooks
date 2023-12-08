@@ -1,14 +1,24 @@
-import { Express } from 'express';
-import listNames from './list-names';
-import swagger from './swagger';
-import bestSellersList from './best-sellers-list';
+import { Express, Request, Response } from 'express';
+import listNamesController from '../controller/list-names';
+import bestSellersListController from '../controller/best-sellers-list';
 
-
-
-export const initRoutes = (app: Express) => {
-    listNames(app);
-    bestSellersList(app);
-    swagger(app);
+type Route = {
+    path: string;
+    method: 'get'; // TODO: other methods
+    controller: (req: Request, res: Response) => void;
 }
 
-export default initRoutes;
+const routes: Route[] = [
+    {
+        path: '/list-names',
+        method: 'get',
+        controller: listNamesController
+    },
+    {
+        path: '/category',
+        method: 'get',
+        controller: bestSellersListController
+    },
+];
+
+export default routes;
