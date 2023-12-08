@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET should return reviews references json 1`] = `"[{\\"url\\":\\"http://www.nytimes.com/2013/05/15/books/lets-explore-diabetes-with-owls-by-david-sedaris.html\\",\\"byline\\":\\"JANET MASLIN\\",\\"summary\\":\\"Most of David Sedaris’s new collection of essays concern his offbeat family life, health, politics, hometown and travels.\\"},{\\"url\\":\\"http://www.nytimes.com/2013/05/19/books/review/lets-explore-diabetes-with-owls-by-david-sedaris.html\\",\\"byline\\":\\"DAVID CARR\\",\\"summary\\":\\"Stuck in traffic with David Sedaris.\\"}]"`;

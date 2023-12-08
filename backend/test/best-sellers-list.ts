@@ -1,17 +1,25 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
+import chaiJestSnapshot from "chai-jest-snapshot";
 import sinon from "sinon";
 import { DefaultService } from "../src/service/nyTimesClient/services/DefaultService";
 
 const app = require('../src/index');
 const bestSellersListMockResponse = require('./best-sellers-list-mock-response.json');
 
-
 chai.use(chaiHttp);
-
-// Use snapshot testing
+chai.use(chaiJestSnapshot);
 
 describe('GET', () => {
+
+  before(function () {
+    chaiJestSnapshot.resetSnapshotRegistry();
+  });
+
+  beforeEach(function () {
+    chaiJestSnapshot.configureUsingMochaContext(this);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
@@ -22,7 +30,7 @@ describe('GET', () => {
       .get('/category?encodedListName=hardcover-fiction')
       .end((err, res) => {
         chai.expect(res).to.have.status(200);
-        chai.expect(JSON.parse(res.text)).to.deep.equal(bestSellersListMockResponse);
+        chai.expect(res.text).to.matchSnapshot();
         done(); // Don't forget to call done() for async tests
       });
   });
