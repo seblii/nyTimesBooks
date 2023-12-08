@@ -1,0 +1,41 @@
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2023 The New York Times Company.  All Rights Reserved.",
+    "num_results": 2,
+    "results": [
+        {
+            "url": "http://www.nytimes.com/2013/05/15/books/lets-explore-diabetes-with-owls-by-david-sedaris.html",
+            "publication_dt": "2013-05-15",
+            "byline": "JANET MASLIN",
+            "book_title": "Let's Explore Diabetes With Owls",
+            "book_author": "David Sedaris",
+            "summary": "Most of David Sedaris’s new collection of essays concern his offbeat family life, health, politics, hometown and travels.",
+            "uuid": "00000000-0000-0000-0000-000000000000",
+            "uri": "nyt://book/00000000-0000-0000-0000-000000000000",
+            "isbn13": [
+                "9780316125680",
+                "9780316154697",
+                "9780316154703",
+                "9780316233910",
+                "9781619696990"
+            ]
+        },
+        {
+            "url": "http://www.nytimes.com/2013/05/19/books/review/lets-explore-diabetes-with-owls-by-david-sedaris.html",
+            "publication_dt": "2013-05-19",
+            "byline": "DAVID CARR",
+            "book_title": "Let’s Explore Diabetes With Owls",
+            "book_author": "David Sedaris",
+            "summary": "Stuck in traffic with David Sedaris.",
+            "uuid": "00000000-0000-0000-0000-000000000000",
+            "uri": "nyt://book/00000000-0000-0000-0000-000000000000",
+            "isbn13": [
+                "9780316125680",
+                "9780316154697",
+                "9780316154703",
+                "9780316233910",
+                "9781619696990"
+            ]
+        }
+    ]
+}

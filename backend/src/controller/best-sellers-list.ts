@@ -47,11 +47,10 @@ import BestellersService from "../service/BestsellersService";
  *       400:
  *         description: Bad request. This can occur if the 'encodedListName' parameter is missing, empty, or in an invalid format.
  */
-
 export default async (req: Request, res: Response) => {
     const { encodedListName } = req.query;
     if (!encodedListName) {
-        res.status(400).send("400: encodedListName paramater missing");
+        res.status(400).send("400: 'encodedListName' paramater missing");
         return;
     }
 

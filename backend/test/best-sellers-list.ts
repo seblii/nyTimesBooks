@@ -1,7 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import sinon from "sinon";
-import { DefaultService } from "../src/api/services/DefaultService";
+import { DefaultService } from "../src/service/nyTimesClient/services/DefaultService";
 
 const app = require('../src/index');
 const bestSellersListMockResponse = require('./best-sellers-list-mock-response.json');
@@ -12,8 +12,8 @@ chai.use(chaiHttp);
 // Use snapshot testing
 
 describe('GET', () => {
-  afterEach(function() {
-      sinon.restore();
+  afterEach(function () {
+    sinon.restore();
   });
 
   it('should return books in a category json', (done) => {

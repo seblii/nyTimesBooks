@@ -1,14 +1,15 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import sinon from "sinon";
-import { DefaultService } from "../src/api/services/DefaultService";
+import { DefaultService } from "../src/service/nyTimesClient/services/DefaultService";
+
 const listNamesMockResponse = require('./list-names-mock-response.json');
 const app = require('../src/index');
 chai.use(chaiHttp);
 
 describe('GET', () => {
-  afterEach(function() {
-      sinon.restore();
+  afterEach(function () {
+    sinon.restore();
   });
 
   it('should return listnames json', (done) => {

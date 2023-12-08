@@ -15,12 +15,18 @@ type Book = {
     book_image: string | undefined;
 };
 
+type ReviewReference = {
+    url: string | undefined;
+    byline: string | undefined;
+    summary: string | undefined;
+};
+
 class BestellersService {
     apiKey: string = "";
 
     constructor(apiKey: string) {
         if (!apiKey) {
-            throw new Error("NYT_API_KEY must be given!")
+            throw new Error("NYT_API_KEY must be given!");
         }
         this.apiKey = apiKey;
     }
@@ -39,9 +45,6 @@ class BestellersService {
     async getBestsellersOfCategory(
         encodedListName: string
     ): Promise<Book[] | undefined> {
-        if (!process.env.NYT_API_KEY) {
-            throw new Error("NYT_API_KEY environment variable not set!");
-        }
         const rawResponse = await DefaultService.getListsDateListJson(
             "current",
             encodedListName as string,
@@ -62,6 +65,22 @@ class BestellersService {
         );
 
         return books ? books : [];
+    }
+
+    async getBookReviewReferences(isbn: number): Promise<ReviewReference[]> {
+        const rawResponse = await DefaultService.getReviewsFormat(
+            this.apiKey,
+            isbn
+        );
+
+        const reviewRefs = rawResponse.results?.map(({ url, byline, summary }) => {
+            return {
+                url,
+                byline,
+                summary,
+            };
+        });
+        return reviewRefs ? reviewRefs : [];
     }
 }
 

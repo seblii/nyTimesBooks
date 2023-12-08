@@ -16,7 +16,7 @@ const swaggerDefinition = {
   
 const swaggerConfig = {
     swaggerDefinition,
-    apis: ['./src/routes/*.ts'], 
+    apis: ['./src/controller/*.ts'], 
 };
 
 module.exports = swaggerConfig;
