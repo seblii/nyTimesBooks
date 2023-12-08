@@ -16,17 +16,5 @@ export type BookCategory = {
      * URL-encoded name for the list
      */
     list_name_encoded?: string;
-    /**
-     * Date when the list was first published
-     */
-    oldest_published_date?: string;
-    /**
-     * Most recent publication date for the list
-     */
-    newest_published_date?: string;
-    /**
-     * Frequency of list updates
-     */
-    updated?: string;
 };
 

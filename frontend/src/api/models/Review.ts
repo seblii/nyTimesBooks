@@ -5,32 +5,16 @@
 
 export type Review = {
     /**
-     * url to the review
+     * URL to review
      */
     url?: string;
     /**
-     * The title of the review.
+     * Review's editor
      */
-    reviewTitle?: string;
+    byline?: string;
     /**
-     * The title of the book being reviewed.
-     */
-    bookTitle?: string;
-    /**
-     * The author of the book being reviewed.
-     */
-    author?: string;
-    /**
-     * A summary of the review.
+     * Summary of the review
      */
     summary?: string;
-    /**
-     * The ISBN of the book being reviewed.
-     */
-    isbn?: string;
-    /**
-     * The publication date of the review.
-     */
-    publicationDate?: string;
 };
 

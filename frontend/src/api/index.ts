@@ -11,6 +11,4 @@ export type { Book } from './models/Book';
 export type { BookCategory } from './models/BookCategory';
 export type { Review } from './models/Review';
 
-export { BooksService } from './services/BooksService';
 export { DefaultService } from './services/DefaultService';
-export { ReviewsService } from './services/ReviewsService';
