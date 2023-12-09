@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import {
-  Book,
-  Review,
-  BookCategory,
-  BooksService,
-  DefaultService,
-  ReviewsService,
-} from "./api";
+import { Book, Review, BookCategory, DefaultService } from "./api";
 import Box from "@mui/material/Box";
 import {
   Link,
@@ -79,7 +72,7 @@ function BookList() {
   useEffect(() => {
     if (!encodedListName) return;
 
-    BooksService.getBestSellersList(encodedListName).then((books) => {
+    DefaultService.getCategory(encodedListName).then((books) => {
       setBooks(books);
     });
   }, [encodedListName]);
@@ -117,7 +110,7 @@ function Review() {
   useEffect(() => {
     if (!isbn13) return;
 
-    ReviewsService.getReviews(isbn13).then((reviews) => {
+    DefaultService.getReviews(parseInt(isbn13)).then((reviews) => {
       setReviews(reviews);
     });
   }, [isbn13]);
