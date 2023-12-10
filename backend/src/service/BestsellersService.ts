@@ -23,17 +23,22 @@ type ReviewReference = {
 
 type FunctionType = (...args: any[]) => any;
 
-// TODO: Fix the cache
+const CACHE: any = {};
+const HOUR_AS_MS = 3600000;
+
 function cacheFunction<T extends FunctionType>(fn: T): T {
-    let cache: any = {};
     return function (...args: any[]) {
         const key: string = JSON.stringify(args);
-        if (!cache[key]) {
-            cache[key] = fn(...args);
+        const timestamp = new Date().getTime();
+        const isCached = (CACHE[key] && timestamp - CACHE[key]["timestamp"] < HOUR_AS_MS);
+
+        if (!isCached) {
+            CACHE[key] = { "response": fn(...args), timestamp };
         } else {
-            console.log("Response from cache.")
+            console.log("Response from cache.");
         }
-        return cache[key];
+
+        return CACHE[key]["response"];
     } as T;
 }
 

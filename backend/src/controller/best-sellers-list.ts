@@ -53,7 +53,6 @@ export default async (req: Request, res: Response) => {
         res.status(400).send("400: 'encodedListName' paramater missing");
         return;
     }
-
     const books = await new BestellersService(
         process.env.NYT_API_KEY!!
     ).getBestsellersOfCategory(encodedListName as string);
