@@ -58,7 +58,6 @@ npm run test
 This command generates client for NY Times Books API. Generation is based on OpenApi spec published by NY Times.
 This client is used by this backend application. Use following command if you need to update the client:
 
-```
-bash
+```bash
 npm run generateNyTimesClient
 ```
