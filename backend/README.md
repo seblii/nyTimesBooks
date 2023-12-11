@@ -1,4 +1,4 @@
-## NY Times Bestesellers browser
+## NY Times Bestsellers browser
 
 This backend simplifies NY Times API to use with specifically designed frontend app.
 This application is experimental project and doesn't have real world use case.
