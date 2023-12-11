@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  bestsellers-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    environment:
+      - PORT=8080
+      - NODE_ENV=prod
+
+  bestsellers-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - NODE_ENV=prod
+      - NYT_API_KEY=${NYT_API_KEY}
