@@ -40,10 +40,20 @@ You can generate a TypeScript client for the API using the following command:
 npm run generateTypeScriptClient
 ```
 
-This action creates a TypeScript-based client that you can use to integrate with your application's API. Check configuration in ./config/swaggerConfig.js
+This action creates a TypeScript-based client that you can use in frontend. Check configuration in ./config/swaggerConfig.js
 
 ## Running tests
 
 ```bash
 npm run test
+```
+
+## Generate NY Times API
+
+This command generates client for NY Times Books API. Generation is based on OpenApi spec published by NY Times.
+This client is used by this backend application. Use following command if you need to update the client:
+
+```
+bash
+npm run generateNyTimesClient
 ```
