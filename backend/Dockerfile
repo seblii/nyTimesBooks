@@ -19,6 +19,9 @@ RUN npm run build
 # Production stage: Create a new stage with a smaller base image
 FROM node:21-alpine
 
+# Set default environment variables
+ENV NODE_ENV=prod
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 

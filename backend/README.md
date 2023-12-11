@@ -3,12 +3,20 @@
 This backend simplifies NY Times API to use with specifically designed frontend app.
 This application is experimental project and doesn't have real world use case.
 
+## Starting the app in container
+
+```bash
+docker build -t bestsellers-backend .
+docker run --name bestsellers-backend -p 3000:3000 -e PORT=3000 -e NYT_API_KEY=[your_api_key] bestsellers-backend
+```
+
 ## Initial Setup
 
 Before you begin, ensure you have set the necessary environment variables in the `.env` file. You will need the following variables:
 
 - `PORT`: The port number where the application's API will be exposed.
 - `NYTIMES_API_KEY`: Your personal key for accessing the New York Times API.
+- `NODE_ENV`: dev or prod
 
 ## Starting the app
 
