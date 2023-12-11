@@ -17,5 +17,5 @@ Make sure you've set NYT_API_KEY in your .env -file in the "Initial setup" phase
 Then use following command:
 
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 ```
