@@ -1,10 +1,7 @@
 require('dotenv').config();
-const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
 import cors from 'cors';
-const swaggerConfig = require('../config/swaggerConfig');
 import express from "express";
-const morgan = require('morgan');
+import morgan from 'morgan';
 import routes from "./routes";
 
 const app = express();
@@ -23,12 +20,14 @@ routes.forEach(route => {
 
 // Dev-time routes
 if (process.env.NODE_ENV == "dev") {
-    const swaggerSpec = swaggerJsdoc(swaggerConfig);
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    import('./routes/dev-routes').then(mdle => {
+        mdle.default(app);
+    });
 }
 
 // Start server
 app.listen(process.env.PORT, () => {
+    console.log("Starting app in environment:", process.env.NODE_ENV);
     console.log(`Server is running on port ${process.env.PORT}`);
 });
 
