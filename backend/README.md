@@ -23,7 +23,7 @@ docker run --name bestsellers-backend --env-file .env -e NODE_ENV=prod -p 3000:3
 
 Note! Container can be ran in prod-mode only. If you are having "Error: Cannot find module '../../config/swaggerConfig'" you are running the app in dev-mode. Check your NODE_ENV environment variable.
 
-## Starting the app
+## Starting the app in development mode
 
 To start the application in development mode, use the following command:
 
@@ -36,6 +36,10 @@ To start the application in production mode, use the following command:
 ```bash
 npm run start
 ```
+
+## Testing the endpoints with Swagger-UI
+
+Swagger-UI can be used in dev-mode. Try `http://localhost:3000/api-docs`.
 
 ## Generating TypeScript Client
 
