@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import BookCategoryList from "./components/BookCategoryList";
 import BookList from "./components/BookList";
 import { ReviewList } from "./components/Review";
+import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
